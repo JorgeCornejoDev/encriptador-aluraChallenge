@@ -38,6 +38,8 @@ body {
     margin-right: 5px;
     color:#0A3871;
 }
+
+
 .flex{
     display: flex;
 }
@@ -134,6 +136,9 @@ footer {
     display:flex; align-items:flex-end; justify-content:center;
 }
 
+footer p {
+    margin-right:5px;
+}
 /* Responsive phone */
 @media screen and (min-width:300px) {
     .card--contenedor{
