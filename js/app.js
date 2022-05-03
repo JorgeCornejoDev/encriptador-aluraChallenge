@@ -20,22 +20,25 @@ encriptar.addEventListener('click', function() {
         setTimeout(() => {
             mensajeError.textContent = '';
         }, 2000);
+
+        return;
+    }
+
+    if(esMayuscula(texto.value) ) {
+        mensajeError.textContent = '¡Lo sentimos, solo aceptamos texto sin mayúsculas ni acentos!';
+        setTimeout(() => {
+            mensajeError.textContent = '';
+        }, 3000);
+        texto.value = '';
+        
     }else {
-        if(esMayuscula(texto.value) || conAcentos(texto.value)) {
-            mensajeError.textContent = '¡Lo sentimos, solo aceptamos texto sin mayúsculas ni acentos!';
-            setTimeout(() => {
-                mensajeError.textContent = '';
-            }, 3000);
-            texto.value = '';
-        }else {
-            agregarClase(card, 'flex--vertical');
-            agregarClase(cardTitulo, 'hide--item');
-            agregarClase(img, 'hide--item');
-            removerClase(img, 'mostrar');
-            removerClase(copiar, 'hide--item');
-            cardMensaje.textContent = encriptarMensaje( texto.value );
-            texto.value = "";
-        }
+        agregarClase(card, 'flex--vertical');
+        agregarClase(cardTitulo, 'hide--item');
+        agregarClase(img, 'hide--item');
+        removerClase(img, 'mostrar');
+        removerClase(copiar, 'hide--item');
+        cardMensaje.textContent = encriptarMensaje( texto.value );
+        texto.value = "";
     }
     
     
@@ -50,6 +53,18 @@ desencriptar.addEventListener('click', function(){
         setTimeout(() => {
             mensajeError.textContent = '';
         }, 2000);
+
+        return;
+    }
+    
+    if(esMayuscula(texto.value))  {
+        mensajeError.textContent = '¡Lo sentimos, solo aceptamos texto sin mayúsculas ni acentos!';
+        setTimeout(() => {
+            mensajeError.textContent = '';
+        }, 3000);
+        console.log(esMayuscula(texto.value));
+        console.log(conAcentos(texto.value));
+        texto.value = '';
     }else {
         agregarClase(cardTitulo, 'hide--item');
         agregarClase(img, 'hide--item');
@@ -57,7 +72,6 @@ desencriptar.addEventListener('click', function(){
         removerClase(copiar, 'hide--item');
         cardMensaje.textContent = desencriptarMensaje( texto.value );;
         texto.value = "";
-        
     }
 })
 
