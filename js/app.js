@@ -21,13 +21,21 @@ encriptar.addEventListener('click', function() {
             mensajeError.textContent = '';
         }, 2000);
     }else {
-        agregarClase(card, 'flex--vertical');
-        agregarClase(cardTitulo, 'hide--item');
-        agregarClase(img, 'hide--item');
-        removerClase(img, 'mostrar');
-        removerClase(copiar, 'hide--item');
-        cardMensaje.textContent = encriptarMensaje( texto.value );
-        texto.value = "";
+        if(esMayuscula(texto.value) || conAcentos(texto.value)) {
+            mensajeError.textContent = '¡Lo sentimos, solo aceptamos texto sin mayúsculas ni acentos!';
+            setTimeout(() => {
+                mensajeError.textContent = '';
+            }, 3000);
+            texto.value = '';
+        }else {
+            agregarClase(card, 'flex--vertical');
+            agregarClase(cardTitulo, 'hide--item');
+            agregarClase(img, 'hide--item');
+            removerClase(img, 'mostrar');
+            removerClase(copiar, 'hide--item');
+            cardMensaje.textContent = encriptarMensaje( texto.value );
+            texto.value = "";
+        }
     }
     
     
@@ -139,3 +147,10 @@ function codificar( mensaje ) {
    }
 }
 
+function esMayuscula(mensaje) {
+    return /[A-Z]/g.test(mensaje);
+}
+
+function conAcentos( mensaje ) {
+    return /^[a-zA-Z\u00C0-\u017F]+$/g.test(mensaje);
+}
